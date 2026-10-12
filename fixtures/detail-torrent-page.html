@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Sample Book Audiobook</title>
+</head>
+<body>
+<div id="header"><h1>AudioBook Bay</h1></div>
+
+<div id="content">
+
+  <!-- The torrent's metadata table. The Info Hash is lower-case here, and the scraper has to
+       upper-case it and validate its length. Trackers appear as their own two-cell rows. -->
+  <table>
+    <tr><td>Announce URL:</td><td>http://tracker.one.example.invalid:2710/announce</td></tr>
+    <tr><td>This Torrent also has several backup trackers</td></tr>
+    <tr><td>Tracker:</td><td>http://tracker.one.example.invalid:2710/announce</td></tr>
+    <tr><td>Tracker:</td><td>http://tracker.two.example.invalid:2095/announce</td></tr>
+    <tr><td>Tracker:</td><td>udp://tracker.three.example.invalid:6969/announce</td></tr>
+    <tr><td>Tracker:</td><td>udp://tracker.four.example.invalid:1337/announce</td></tr>
+    <tr><td>Tracker:</td><td>udp://tracker.five.example.invalid:451/announce</td></tr>
+    <tr><td>Creation Date:</td><td>Sun, 12 Jul 2026 03:52:43 +0200</td></tr>
+    <tr><td colspan='2'>This is a Multifile Torrent</td></tr>
+    <tr><td colspan='2'>Sample_Book.m4b 900.00 MBs</td></tr>
+    <tr><td>Combined File Size:</td><td><span style='color:#00f;'>900.00</span> MBs</td></tr>
+    <tr><td>Piece Size:</td><td><span style='color:#a00;'>256</span> KBs</td></tr>
+    <tr><td>Comment:</td><td>Updated by AudioBook Bay</td></tr>
+    <tr><td>Info Hash:</td><td>a75c81a1ea997530087d87dec83bf77a1dddee15</td></tr>
+
+    <!-- One real download route and four that are not. Three go to a paid signup service and two to
+         an affiliate tracker, so the scraper must match the /downld0 path and ignore the rest. -->
+    <tr><td>Torrent Download</td><td><span style='display:block;font-weight:bold;'><a href='/downld0?downfs=sample_book'>Torrent Free Downloads</a></span></td><td style='display:none;'></td></tr>
+    <tr><td>Tips</td><td>Sometimes the torrent health info isn&#8217;t accurate.</td></tr>
+    <tr><td>Direct Download</td><td><span style='display:block;font-weight:bold;'><a href='/dedl4-now?teb=sample_book'>Start Direct Download</a></span></td><td style='display:none;'></td></tr>
+    <tr><td>Tips</td><td>You could try out alternative bittorrent clients.</td></tr>
+    <tr><td>Secured Download</td><td><span style='display:block;font-weight:bold;'><a href='/hi-3dl?downf=Sample+Book'>Download Files Now</a></span></td><td style='display:none;'></td></tr>
+    <tr><td>(icon)</td><td><a href='/dodl3-no?dow=sample_book'></a></td></tr>
+    <tr><td>(icon)</td><td><a href='/ddeaatr'></a></td></tr>
+  </table>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+# The private signing key and any key material stay outside the repository.
+*.pem
+*.key
+
+# Local project memory and scratch work.
+memory.md
+.scratch/
+node_modules/
+
+# Reference clones used while developing; not part of the deliverable.
+refs/
+
+# Credential-probe scratch (session cookies).
+.probe/

@@ -1,0 +1,21 @@
+{
+  "name": "bookorbit-audiobookbay-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "BookOrbit indexer plugin that adds AudiobookBay as an audiobook source",
+  "type": "module",
+  "scripts": {
+    "verify": "node verify.mjs",
+    "verify:update": "node scripts/verify-update.mjs audiobookbay",
+    "verify:release": "node scripts/verify-update.mjs audiobookbay",
+    "selftest:signing": "node scripts/verify-update.mjs audiobookbay --selftest",
+    "preflight": "node scripts/verify-update.mjs audiobookbay --preflight",
+    "check": "node --check indexers/audiobookbay/index.mjs && node --check verify.mjs && node --check live-validate.mjs && node --check scripts/probe-member-download.mjs && node --check scripts/sign-update.mjs && node --check scripts/verify-update.mjs",
+    "test": "node verify.mjs && node scripts/verify-update.mjs audiobookbay --selftest",
+    "live-validate": "node live-validate.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.9.3"
+  }
+}
