@@ -35,6 +35,21 @@ if (publicKeyPath) {
   const suppliedPublicKey = createPublicKey(await readFile(publicKeyPath)).export({ format: 'jwk' }).x;
   if (suppliedPublicKey !== publicKey) throw new Error('The supplied public key does not match the signing key');
 }
+
+/*
+ * Refuse to sign a version that is already signed.
+ *
+ * BookOrbit only installs an update whose manifest version is greater than the installed version, so
+ * re-signing the same version produces a manifest every user rejects as "already installed" while
+ * silently replacing one whose bytes no longer match. The check runs before anything is written, and
+ * the bump is the whole point of a release, so getting it wrong is worth stopping for.
+ */
+const existingManifestPath = resolve(root, 'updates', `${type}.json`);
+let existingManifest = null;
+try {
+  existingManifest = JSON.parse(await readFile(existingManifestPath, 'utf8'));
+} catch { /* no manifest yet, which is the first-release case */ }
+
 const manifestUrl = `${updateRoot}/updates/${type}.json`;
 const sourceUrl = `${updateRoot}/indexers/${type}/index.mjs`;
 const sourcePath = resolve(root, 'indexers', type, 'index.mjs');
@@ -48,6 +63,15 @@ if (plugin?.type !== type || typeof plugin.version !== 'string' ||
     !/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.test(plugin.version)) {
   throw new Error('The plugin type or version is invalid');
 }
+if (existingManifest?.version === plugin.version && !process.argv.includes('--force')) {
+  throw new Error(
+    `updates/${type}.json already exists for version ${plugin.version}. ` +
+    `BookOrbit only installs a manifest whose version is greater than the installed one, so a release ` +
+    `needs a version bump in indexers/${type}/index.mjs first. ` +
+    `Use --force only to deliberately re-sign the version already published.`,
+  );
+}
+
 const manifest = {
   schemaVersion: 1,
   type,

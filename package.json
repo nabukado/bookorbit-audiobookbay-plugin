@@ -10,6 +10,9 @@
     "verify:release": "node scripts/verify-update.mjs audiobookbay",
     "selftest:signing": "node scripts/verify-update.mjs audiobookbay --selftest",
     "preflight": "node scripts/verify-update.mjs audiobookbay --preflight",
+    "sign:dry-run": "node scripts/sign-update.mjs audiobookbay --dry-run",
+    "sign": "node scripts/sign-update.mjs audiobookbay",
+    "sign:force": "node scripts/sign-update.mjs audiobookbay --force",
     "check": "node --check indexers/audiobookbay/index.mjs && node --check verify.mjs && node --check live-validate.mjs && node --check scripts/probe-member-download.mjs && node --check scripts/sign-update.mjs && node --check scripts/verify-update.mjs",
     "test": "node verify.mjs && node scripts/verify-update.mjs audiobookbay --selftest",
     "live-validate": "node live-validate.mjs"

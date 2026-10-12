@@ -156,8 +156,11 @@ against the embedded public key. It re-checks every 12 hours. Three consequences
    openssl pkey -in /secure/location/audiobookbay-ed25519.pem -pubout -out /secure/location/audiobookbay-ed25519.pub.pem
    ```
 
-3. Sign. This rewrites the embedded channel, writes `updates/audiobookbay.json`, hashes the exact
-   runtime bytes and signs those same bytes. `--dry-run` prints what it would do without writing:
+3. Sign **from the repository root** (the command uses relative paths, so run it from anywhere else
+   and node reports `Cannot find module .../scripts/sign-update.mjs`; the `npm run sign` forms below
+   avoid that entirely). This rewrites the embedded channel, writes `updates/audiobookbay.json`,
+   hashes the exact runtime bytes and signs those same bytes. `--dry-run` prints what it would do
+   without writing:
 
    ```sh
    BOOKORBIT_PLUGIN_SIGNING_KEY=/secure/location/audiobookbay-ed25519.pem \
