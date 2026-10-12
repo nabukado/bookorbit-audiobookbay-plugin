@@ -121,10 +121,9 @@ node live-validate.mjs --resolve-probe
 
 ## Signed updates
 
-The plugin supports BookOrbit's signed update channel. It is **not active in this repository yet**,
-because the channel has to name the URL the plugin will actually be published at. Until a release is
-signed the plugin reports no update channel, installs and runs normally, and BookOrbit never checks for
-one.
+The plugin supports BookOrbit's signed update channel, and it is **active**: the runtime embeds the
+channel for this repository, so an installed copy checks for updates every 12 hours. It is published at
+[github.com/nabukado/bookorbit-audiobookbay-plugin](https://github.com/nabukado/bookorbit-audiobookbay-plugin).
 
 ### How BookOrbit finds an update
 
@@ -163,7 +162,7 @@ against the embedded public key. It re-checks every 12 hours. Three consequences
    ```sh
    BOOKORBIT_PLUGIN_SIGNING_KEY=/secure/location/audiobookbay-ed25519.pem \
    BOOKORBIT_PLUGIN_PUBLIC_KEY=/secure/location/audiobookbay-ed25519.pub.pem \
-   BOOKORBIT_PLUGIN_UPDATE_ROOT=https://raw.githubusercontent.com/<you>/<repo>/main \
+   BOOKORBIT_PLUGIN_UPDATE_ROOT=https://raw.githubusercontent.com/nabukado/bookorbit-audiobookbay-plugin/main \
    node scripts/sign-update.mjs audiobookbay --dry-run
    ```
 

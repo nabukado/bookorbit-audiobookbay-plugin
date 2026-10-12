@@ -16,7 +16,7 @@
  */
 
 const VERSION = '0.1.0';
-const UPDATE_CHANNEL = null; // scripts/sign-update.mjs fills this with the publisher's public key and URL.
+const UPDATE_CHANNEL = {"manifestUrl":"https://raw.githubusercontent.com/nabukado/bookorbit-audiobookbay-plugin/main/updates/audiobookbay.json","ed25519PublicKey":"EcwIgksPqoV2waKk4MdcDGaJfP_Kh3KuAFejB7PhJw0"}; // scripts/sign-update.mjs fills this with the publisher's public key and URL.
 const TYPE = 'audiobookbay';
 
 /** Audio formats BookOrbit can import and play (scanner/lib/classify.ts AUDIO_FORMATS). */

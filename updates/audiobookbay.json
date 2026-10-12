@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "type": "audiobookbay",
+  "version": "0.1.0",
+  "sourceUrl": "https://raw.githubusercontent.com/nabukado/bookorbit-audiobookbay-plugin/main/indexers/audiobookbay/index.mjs",
+  "sha256": "5bb46da078fb72da3f1dce3dc0924ee340411df45f6edda2f08f5299cfacf7d2",
+  "signature": "4S1w9gA0D1pm1/BXBeCnHPSzrey6oPruyNqaq6afIBS8I+zcO+apZULQ9kuJsTrzHYoYkUdIZrokJni1R8wPBw=="
+}

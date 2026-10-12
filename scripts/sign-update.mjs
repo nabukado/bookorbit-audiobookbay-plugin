@@ -10,7 +10,18 @@ const publicKeyPath = process.env.BOOKORBIT_PLUGIN_PUBLIC_KEY;
 const updateRoot = process.env.BOOKORBIT_PLUGIN_UPDATE_ROOT?.replace(/\/$/, '');
 if (type !== 'audiobookbay') throw new Error('Usage: BOOKORBIT_PLUGIN_SIGNING_KEY=/outside/repo/key.pem BOOKORBIT_PLUGIN_UPDATE_ROOT=https://host/path node scripts/sign-update.mjs audiobookbay');
 if (!keyPath || !updateRoot) throw new Error('A signing key path and HTTPS update root are required');
-if (resolve(keyPath).startsWith(`${root}${sep}`)) throw new Error('Keep the private signing key outside this repository');
+/*
+ * A key inside the repository is refused by default, because a committed private key lets anybody
+ * publish a plugin your users will install. The override exists for one narrow case: signing once in
+ * an environment where no path outside the tree is writable, after which the key must be destroyed.
+ * It is deliberately a distinct, explicit flag rather than a side effect of anything else.
+ */
+if (resolve(keyPath).startsWith(`${root}${sep}`)) {
+  if (process.env.BOOKORBIT_PLUGIN_ALLOW_INTERNAL_KEY !== '1') {
+    throw new Error('Keep the private signing key outside this repository. Set BOOKORBIT_PLUGIN_ALLOW_INTERNAL_KEY=1 only to sign once and then delete the key.');
+  }
+  process.stderr.write('WARNING: signing with a key inside the repository. Delete it as soon as this finishes, and never commit it.\n');
+}
 try {
   const url = new URL(updateRoot);
   if (url.protocol !== 'https:' || url.username || url.password || url.search || url.hash) throw new Error();

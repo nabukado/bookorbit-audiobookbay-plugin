@@ -12,3 +12,7 @@ refs/
 
 # Credential-probe scratch (session cookies).
 .probe/
+
+# Key material for signing releases. Never commit: generate it outside the repository for a real
+# release and keep it where only you can read it.
+keys/
